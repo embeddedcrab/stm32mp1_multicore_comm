@@ -7,42 +7,8 @@ M4 part generates some data and send it to A7.
 A7 has a server running which accepts messages and copy those into a shared memory region which will be read by some other application.
 Other Application takes data from shared memory and is responsible to process that data according to message request.
 
-_________________________________________________________________________________________________________________
-|		________							________			|
-|		|Core 1|							|Core 2|			|
-|		========							========			|
-|	     				   Shared Memory Region							|
-|	--------------------------	|			|	    ------------------------		|
-|	|	IPC Sender	 |=====>|			|==========>|	   IPC Reader	   |		|
-|	--------------------------	|			|	    ------------------------		|
-|		    ||			|			|						|
-|	--------------------------	|			|	    -------------------------		|
-|	| Active Request Handler |	|			|	    | Thread Pool Processing |		|
-|	--------------------------	|			|	    -------------------------		|
-|		    ||			|			|						|
-|	|------------------------	|			|						|
-|	|			|	|			|						|
-|	|	SERVER		|	|			|						|
-|	-------------------------	|			|						|
-|		  ||  ^  ||		|			|						|
-|		  ||  |  ||											|	
-|		  ||  |	 ||											|
-|														|
-|-----------------ttyRPMSG0-------------------------------------------------------------------------------------|
-|		 //  ||  \\											|
-|		///  ||  \\\											|
-|		|||  ||	 |||											|
-|		|||  ||	 |||<--- Sending some Message in particular format					|
-|		|||  ||	 |||											|
-|		|||  ||	  --------------------									|
-|		||| ========================== M4 Processor							|
-|		------------------------------									|
-|														|
-|														|
-|				Fig. Sample Processing inside system						|
-|														|
-|														|
------------------------------------------------------------------------------------------------------------------
+
+![ApplicationArch](https://user-images.githubusercontent.com/24417311/229630564-0032a8f7-bc8c-44df-8fd2-dc4b43717483.png)
 
 
 Folders Description:
