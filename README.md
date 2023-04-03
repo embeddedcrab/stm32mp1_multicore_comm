@@ -10,7 +10,16 @@ Other Application takes data from shared memory and is responsible to process th
 
 ## Folders Description:
 
-### 1. Utilities (C++)
+### 1. images
+Contains Output and Architecture images.
+
+### 2. meta-stm32mp
+Contain bitbake layer for stm32mp1 applications.
+
+### 3. stm-apps
+Contains applications source code for cm4 and mp157.
+
+#### 3.1. Utilities (C++)
 	Utility Library containing following functionalties:
 	a. PMR (Polymorphic Resource Allocator) which can be used with C++14. Only Monotonic Buffer resource is added but others can be added easily.
 	b. POSIX Shared Memory Adaptor layer.
@@ -22,9 +31,7 @@ Other Application takes data from shared memory and is responsible to process th
 	This library can be used as a generic library in any project where some system programming using C++ is needed. Particularly for Automotive where C++14 is being used.
 	It can easily be extended for further enhancements.
 
-
-
-### 2. HtServer (C++)
+#### 3.2. HtServer (C++)
 	Small Server Application to receive data from M4 Core. It process the requests and put the data into shared memory region.
 	It has 3 major sections:
 	a. Initialization of Application
@@ -33,9 +40,7 @@ Other Application takes data from shared memory and is responsible to process th
 
 	It receives data on ttyRPMSG0 channel. Whenever a request comes it is placed into a queue using active thread which transfers data to shared memory using request queue in a separate thread.
 
-
-
-### 3. HtClient (C++)
+#### 3.3. HtClient (C++)
 	Application to read data from shared memory and process each request.
 	It also has 3 major sections:
 	a. Initialization of Application
@@ -44,9 +49,7 @@ Other Application takes data from shared memory and is responsible to process th
 
 	It receives data from shared memory and put the request into a separate thread. Just priting the received message as dummy processing.
 
-
-
-### 4. M4A7Comm (C)
+#### 3.4. M4A7Comm (C)
 	It is OpenAMP-FreeRTOS based sample application which sends data to A7 core using ttyRPMSG0. There is a possibility to receive data from A7 also using ttyRPMSG1.
 
 	It has majorly 3 Threads:
@@ -58,12 +61,16 @@ Other Application takes data from shared memory and is responsible to process th
 
 
 
+#############################################################################################################
+
+
+
 ### How to Build:
 
 	**yocto_steps.txt** file can be found to build A7 (Linux Application) using yocto project.
 
 	Simple cmake can be used to build CM4 based projects.
-	a. mkdir build (Create build folder in project directory)
+	a. mkdir build (Create build folder in project directory for particular application)
 	b. Go to build directory
 	c. cmake ..
 	d. make
@@ -86,4 +93,4 @@ Other Application takes data from shared memory and is responsible to process th
 
 Cheers!!
 
-Happy to Help and Share :-)
+Happy to Help and Share 😊
