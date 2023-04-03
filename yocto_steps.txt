@@ -1,0 +1,32 @@
+sudo apt install bc build-essential chrpath cpio diffstat gawk git libssl-dev texinfo wget gdisk python3-distutils
+
+cd $HOME/stm32mp157/
+git clone -b dunfell-23.0.19 git://git.yoctoproject.org/poky.git
+
+git clone -b dunfell git://git.openembedded.org/meta-openembedded
+git clone -b dunfell https://github.com/STMicroelectronics/meta-st-stm32mp.git
+
+source poky/oe-init-build-env
+
+BBLAYERS ?= " \
+  /home/<username>/stm32mp157/poky/meta \
+  /home/<username>/stm32mp157/poky/meta-poky \
+  /home/<username>/stm32mp157/poky/meta-yocto-bsp \
+  /home/<username>/stm32mp157/meta-openembedded/meta-oe \
+  /home/<username>/stm32mp157/meta-openembedded/meta-python \
+  /home/<username>/stm32mp157/meta-st-stm32mp \
+  /home/<username>/stm32mp157/meta-stm32mp \
+  "
+
+
+MACHINE=stm32mp1 bitbake core-image-st
+
+
+
+Below steps can easliy be taken from STM Official suppport pages.
+
+# Flashing SD Card using RAW Image
+./create_sdcard_from_flashlayout.sh ../flashlayout_st-image/extensible/FlashLayout_sdcard_stm32mp157f-dk2-extensible.tsv
+
+sudo dd if=../flashlayout_st-image-weston/extensible/../../FlashLayout_sdcard_stm32mp157f-dk2-extensible.raw of=/dev/sda bs=8M conv=fdatasync status=progress oflag=direct
+
