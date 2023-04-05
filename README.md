@@ -20,7 +20,7 @@ Contain bitbake layer for stm32mp1 applications.
 Contains applications source code for cm4 and mp157.
 
 #### 3.1. Utilities (C++)
-	Utility Library containing following functionalties:
+	Utility Library containing following functionalities:
 	a. PMR (Polymorphic Resource Allocator) which can be used with C++14. Only Monotonic Buffer resource is added but others can be added easily.
 	b. POSIX Shared Memory Adaptor layer.
 	c. POSIX Semaphore Adaptor layer.
@@ -38,7 +38,7 @@ Contains applications source code for cm4 and mp157.
 	b. Core Server to receive data
 	c. IPC channel using shared memory
 
-	It receives data on ttyRPMSG0 channel. Whenever a request comes it is placed into a queue using active thread which transfers data to shared memory using request queue in a separate thread.
+	It receives data on ttyRPMSG0 channel. Whenever a request comes it is placed into a queue using active thread which transfers data to shared memory using request queue.
 
 #### 3.3. HtClient (C++)
 	Application to read data from shared memory and process each request.
@@ -55,9 +55,9 @@ Contains applications source code for cm4 and mp157.
 	It has majorly 3 Threads:
 	a. LED Task to blink led or some regular system related tasks
 	b. OpenAMP Receive Task: to check the data on virtual UARTs
-	c. Send Data Thread: sends data in particular format to ttyRPMSG0 after a fixed interval. Actual ADC data or other different data can also be sent accoridng the system behavior.
+	c. Send Data Thread: sends data in particular format to ttyRPMSG0 after a fixed interval. Actual ADC data or other different data can also be sent according to the system behavior.
 
-	[It also receives data from A7 and sends it back to A7 (whatever was sent from there) on ttyRPMSG0, can easily be found official website as a demo part.]
+	[It also receives data from A7 and sends it back to A7 (whatever was sent from there) on ttyRPMSG1, can easily be found on official website as a demo part.]
 
 
 
@@ -83,7 +83,7 @@ Contains applications source code for cm4 and mp157.
 	2. Run Server Application
 	3. Run Client/Reader Application
 	
-	After successful run output shall be somethig like this [https://github.com/embeddedcrab/stm32mp1/blob/master/images/A7_ClientServerComm_M4Internally.png]
+	After successful run, output shall be somethig like this [https://github.com/embeddedcrab/stm32mp1/blob/master/images/A7_ClientServerComm_M4Internally.png]
 
 	[Process to execute ELF file in remote processor can be found in this script: https://github.com/embeddedcrab/stm32mp1/blob/master/stm-apps/cm4/M4A7Comm/remoteproc/fw_cortex_m4.sh]
 	[Yocto will produce an image for recipe core-image-st, which will install binaries in /usr/bin folder.]
